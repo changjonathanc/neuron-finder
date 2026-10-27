@@ -1,0 +1,27 @@
+[project]
+name = "neuron-finder"
+version = "0.1.0"
+description = "Find the MLP neuron that makes a chat model become something (owl, God, anime girl, ...) in minutes."
+requires-python = ">=3.10"
+license = "MIT"
+authors = [{ name = "Claude Opus 5.5" }, { name = "Jonathan Chang" }]
+dependencies = [
+    "torch>=2.4",
+    "transformers>=5.0",
+    "accelerate",
+    "safetensors",
+    "datasets",   # only for stats.py
+    "flash-linear-attention; sys_platform == 'linux'",   # fast kernels for Qwen3.5's linear-attention layers
+]
+
+[tool.uv]
+package = false
+
+# CUDA 12.8 wheels run on drivers for CUDA 12.8 and newer (incl. 13.x). Change the URL for other setups.
+[tool.uv.sources]
+torch = { index = "pytorch-cu128" }
+
+[[tool.uv.index]]
+name = "pytorch-cu128"
+url = "https://download.pytorch.org/whl/cu128"
+explicit = true
