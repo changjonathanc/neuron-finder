@@ -157,6 +157,24 @@ all rows keep their numbers, and `controls.json` keeps only numbers. A new run w
 slurs, hate or sexual-violence words (found with a word list) show as `[redacted: offensive output]`: 20 replies in
 the shipped files. The judge graded the original text.
 
+### Other models
+
+We ran the same recipe and judge on other models, with 12 targets that the tool finds on Qwen3.5-4B (one seed). The
+results show that the method still works on other models. They do not show a success rate on new targets. Some
+"found" results are only word-level or mixed-language. A new model family can need different doses: Apertus works
+best at about 0.5, so we ran it again with `--doses 0.3,0.5,0.8`. LFM2.5 is not supported out of the box yet. Tables
+and notes: [docs/other-models.md](docs/other-models.md).
+
+| model | found of 12 | median hit rate |
+|---|---|---|
+| Qwen3.5-4B (above) | 12 | 0.84 |
+| Qwen3.5-9B | 12 | 0.91 |
+| Qwen3.5-27B | 12 | 0.91 |
+| granite-4.2-8b | 11 | 0.98 |
+| LFM2.5-2.6B | 10 | 0.70 |
+| Apertus-v1.1-4B-Instruct (v1 doses / 0.3-0.8) | 10 / 11 | 0.70 / 0.91 |
+| Llama-3.1-8B-Instruct (older) | 11 | 0.83 |
+
 ### Run notes
 
 * Each target ran with the default command, `uv run neuron_finder.py --target <name>` (Golden Gate also used
