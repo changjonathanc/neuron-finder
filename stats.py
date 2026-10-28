@@ -6,7 +6,7 @@
 neuron_finder.py uses stats/<model name>.safetensors by default (whatever the file contains); --no-stats turns it off.
 stats/Qwen3.5-4B.safetensors (shipped) was made with --write.
 
-usage: uv run stats.py --model Qwen/Qwen3.5-4B --out stats/Qwen3.5-4B.safetensors --write
+usage: uv run stats.py --model Qwen/Qwen3.5-4B --out stats/Qwen3.5-4B.safetensors --write"""
 import argparse, torch
 from safetensors.torch import save_file
 from datasets import load_dataset
